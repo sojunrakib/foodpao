@@ -218,28 +218,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 5. Partner Section Registration Buttons ---
+  // --- 5. Partner Section Registration & Card Feedback ---
+  const partnerActionBtn = document.getElementById('partnerActionBtn');
   const partnerRegisterBtn = document.getElementById('partnerRegisterBtn');
-  const partnerHeaderCtaBtn = document.getElementById('partnerHeaderCtaBtn');
 
   const handlePartnerRegister = (e) => {
     if (e) e.preventDefault();
-    showToast('🎉 Partner onboarding registration is opening soon! Hotline: +880 1700-000000', 'success');
+    showToast('🎉 Partner onboarding registration is opening soon! Partner Hotline: +880 1700-000000', 'success');
   };
 
+  if (partnerActionBtn) {
+    partnerActionBtn.addEventListener('click', handlePartnerRegister);
+  }
   if (partnerRegisterBtn) {
     partnerRegisterBtn.addEventListener('click', handlePartnerRegister);
   }
-  if (partnerHeaderCtaBtn) {
-    partnerHeaderCtaBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const applyBox = document.getElementById('partnerApplyBox');
-      if (applyBox) {
-        applyBox.scrollIntoView({ behavior: 'smooth' });
-      }
-      handlePartnerRegister();
+
+  const partnerCardItems = document.querySelectorAll('.partner-card-item');
+  partnerCardItems.forEach((card) => {
+    card.addEventListener('click', () => {
+      const name = card.getAttribute('data-partner') || 'Restaurant';
+      showToast(`✨ ${name} will be available on FoodPao upon official launch!`, 'info');
     });
-  }
+  });
 
   // --- 6. How It Works "Coming Soon" Button Feedback ---
   const howItWorksCtaBtn = document.getElementById('howItWorksCtaBtn');
