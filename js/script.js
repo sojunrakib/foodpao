@@ -68,37 +68,140 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 3. Location Search Bar Interaction ---
-  const heroSearchForm = document.getElementById('heroSearchForm');
-  const locationInput = document.getElementById('locationInput');
-  const navSearchTrigger = document.getElementById('navSearchTrigger');
+  // --- 3. Dynamic Coming Soon Countdown Timer (Stops 31 Dec 2026) ---
+  const heroCountdownContainer = document.getElementById('heroCountdownContainer');
+  if (heroCountdownContainer) {
+    // Inject the Countdown Component dynamically into Hero Section via JS
+    heroCountdownContainer.innerHTML = `
+      <div class="countdown-card-wrapper">
+        <div class="countdown-header-pill">
+          <span class="live-pulse-badge"></span>
+          <span class="countdown-title">🚀 OFFICIAL LAUNCH COUNTDOWN • 31 DEC 2026</span>
+        </div>
 
-  if (heroSearchForm) {
-    heroSearchForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const val = locationInput.value.trim();
-      if (!val) {
-        showToast('Please enter your delivery location!', 'warning');
-        locationInput.focus();
+        <div class="countdown-boxes-row">
+          <div class="countdown-unit-box">
+            <div class="unit-number-frame">
+              <span class="unit-number" id="cdDays">00</span>
+            </div>
+            <span class="unit-text">DAYS</span>
+          </div>
+
+          <div class="countdown-colon">:</div>
+
+          <div class="countdown-unit-box">
+            <div class="unit-number-frame">
+              <span class="unit-number" id="cdHours">00</span>
+            </div>
+            <span class="unit-text">HOURS</span>
+          </div>
+
+          <div class="countdown-colon">:</div>
+
+          <div class="countdown-unit-box">
+            <div class="unit-number-frame">
+              <span class="unit-number" id="cdMins">00</span>
+            </div>
+            <span class="unit-text">MINS</span>
+          </div>
+
+          <div class="countdown-colon">:</div>
+
+          <div class="countdown-unit-box">
+            <div class="unit-number-frame">
+              <span class="unit-number" id="cdSecs">00</span>
+            </div>
+            <span class="unit-text">SECS</span>
+          </div>
+        </div>
+
+        <div class="countdown-notify-box">
+          <form class="notify-form" id="notifyForm" onsubmit="event.preventDefault();">
+            <div class="notify-input-wrap">
+              <svg class="notify-mail-icon" viewBox="0 0 24 24" fill="none" stroke="#FF2B54" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <input type="email" id="notifyEmailInput" class="notify-input" placeholder="Enter email for 50% launch discount..." required autocomplete="email">
+            </div>
+            <button type="submit" class="btn btn-primary pill-btn btn-notify" id="notifySubmitBtn">
+              <span>Notify Me</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </form>
+          <p class="notify-note">✨ Be the first to order when FoodPao launches in Dhaka & nationwide!</p>
+        </div>
+      </div>
+    `;
+
+    // Target Date: 31 December 2026 at 23:59:59 (Year: 2026, Month: 11 for December, Date: 31)
+    const targetDate = new Date(2026, 11, 31, 23, 59, 59).getTime();
+
+    const daysEl = document.getElementById('cdDays');
+    const hoursEl = document.getElementById('cdHours');
+    const minsEl = document.getElementById('cdMins');
+    const secsEl = document.getElementById('cdSecs');
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        // Stop timer when 31 Dec 2026 is reached
+        if (daysEl) daysEl.textContent = '00';
+        if (hoursEl) hoursEl.textContent = '00';
+        if (minsEl) minsEl.textContent = '00';
+        if (secsEl) secsEl.textContent = '00';
+
+        const titleEl = heroCountdownContainer.querySelector('.countdown-title');
+        if (titleEl) titleEl.textContent = '🎉 WE ARE NOW LIVE! ORDER DELICIOUS FOOD NOW';
+        clearInterval(countdownInterval);
         return;
       }
 
-      showToast(`Finding top restaurants near "${val}"...`, 'success');
-      
-      // Smooth scroll to restaurants section
-      const resSection = document.getElementById('restaurants');
-      if (resSection) {
-        resSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  if (navSearchTrigger) {
-    navSearchTrigger.addEventListener('click', () => {
-      locationInput.focus();
-      locationInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      locationInput.select();
-    });
+      if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+      if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+      if (minsEl) minsEl.textContent = String(minutes).padStart(2, '0');
+      if (secsEl) secsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
+
+    // Notify Form Submission
+    const notifyForm = document.getElementById('notifyForm');
+    const notifyEmailInput = document.getElementById('notifyEmailInput');
+    if (notifyForm) {
+      notifyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = notifyEmailInput.value.trim();
+        if (!email || !email.includes('@')) {
+          showToast('Please enter a valid email address!', 'warning');
+          return;
+        }
+        showToast(`🎉 You're on the list (${email})! 50% discount reserved for launch.`, 'success');
+        notifyEmailInput.value = '';
+      });
+    }
+
+    // Connect Nav Search button to focus the notification input
+    const navSearchTrigger = document.getElementById('navSearchTrigger');
+    if (navSearchTrigger) {
+      navSearchTrigger.addEventListener('click', () => {
+        if (notifyEmailInput) {
+          notifyEmailInput.focus();
+          notifyEmailInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    }
   }
 
   // --- 4. Category Cards Click Feedback ---

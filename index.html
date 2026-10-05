@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Main CSS -->
-  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=4.0">
   
   <!-- Favicon with new FoodPao logo -->
   <link rel="icon" type="image/png" href="assets/images/foodpao-logo.png">
@@ -127,34 +127,8 @@
             Order delicious meals from your favorite restaurants and get them delivered quickly to your doorstep.
           </p>
 
-          <!-- Location & Search Bar -->
-          <div class="hero-search-wrapper">
-            <form class="hero-search-form" id="heroSearchForm" onsubmit="event.preventDefault();">
-              <div class="search-input-group">
-                <span class="location-icon-wrapper">
-                  <svg class="icon-location" viewBox="0 0 24 24" fill="none" stroke="#FF2B54" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </svg>
-                </span>
-                <input 
-                  type="text" 
-                  id="locationInput" 
-                  class="location-input" 
-                  placeholder="Enter your location" 
-                  value="Dhanmondi 27, Dhaka"
-                  autocomplete="off"
-                >
-              </div>
-              <button type="submit" class="btn btn-primary pill-btn btn-find-food" id="findFoodBtn">
-                <svg class="btn-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <span>Find Food</span>
-              </button>
-            </form>
-          </div>
+          <!-- Coming Soon Countdown Timer (Dynamically Injected & Driven via JS) -->
+          <div class="hero-countdown-container" id="heroCountdownContainer"></div>
 
           <!-- 4 Features Row -->
           <div class="hero-features-row">
