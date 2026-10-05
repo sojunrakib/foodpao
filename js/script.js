@@ -209,41 +209,50 @@ document.addEventListener('DOMContentLoaded', () => {
   categoryCards.forEach((card) => {
     card.addEventListener('click', () => {
       const catName = card.querySelector('.cat-title')?.textContent || 'Food';
-      showToast(`Showing popular ${catName} spots near you!`, 'info');
+      showToast(`Delicious ${catName} ordering will be live soon! Countdown active above.`, 'info');
       
-      const resSection = document.getElementById('restaurants');
-      if (resSection) {
-        resSection.scrollIntoView({ behavior: 'smooth' });
+      const cdSection = document.getElementById('heroCountdownContainer');
+      if (cdSection) {
+        cdSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
   });
 
-  // --- 5. Restaurant Favorite Buttons Toggle ---
-  const favBtns = document.querySelectorAll('.res-fav-btn');
-  favBtns.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      btn.classList.toggle('active');
-      const resCard = btn.closest('.restaurant-card');
-      const resName = resCard ? resCard.querySelector('.res-name').textContent : 'Restaurant';
-      
-      if (btn.classList.contains('active')) {
-        showToast(`Added ${resName} to your favorites! ❤️`, 'success');
-      } else {
-        showToast(`Removed ${resName} from favorites.`, 'info');
+  // --- 5. Partner Section Registration Buttons ---
+  const partnerRegisterBtn = document.getElementById('partnerRegisterBtn');
+  const partnerHeaderCtaBtn = document.getElementById('partnerHeaderCtaBtn');
+
+  const handlePartnerRegister = (e) => {
+    if (e) e.preventDefault();
+    showToast('🎉 Partner onboarding registration is opening soon! Hotline: +880 1700-000000', 'success');
+  };
+
+  if (partnerRegisterBtn) {
+    partnerRegisterBtn.addEventListener('click', handlePartnerRegister);
+  }
+  if (partnerHeaderCtaBtn) {
+    partnerHeaderCtaBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const applyBox = document.getElementById('partnerApplyBox');
+      if (applyBox) {
+        applyBox.scrollIntoView({ behavior: 'smooth' });
+      }
+      handlePartnerRegister();
+    });
+  }
+
+  // --- 6. How It Works "Coming Soon" Button Feedback ---
+  const howItWorksCtaBtn = document.getElementById('howItWorksCtaBtn');
+  if (howItWorksCtaBtn) {
+    howItWorksCtaBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      showToast('🚀 Online ordering launches on 31 Dec 2026! Reserve your 50% discount above.', 'info');
+      const cdSection = document.getElementById('heroCountdownContainer');
+      if (cdSection) {
+        cdSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
-  });
-
-  // --- 6. Restaurant Cards Click ---
-  const restaurantCards = document.querySelectorAll('.restaurant-card');
-  restaurantCards.forEach((card) => {
-    card.addEventListener('click', (e) => {
-      if (e.target.closest('.res-fav-btn')) return;
-      const resName = card.querySelector('.res-name')?.textContent || 'Restaurant';
-      showToast(`Opening ${resName} menu...`, 'info');
-    });
-  });
+  }
 
   // --- 7. Login / Sign Up Modal Handling ---
   const authModalBackdrop = document.getElementById('authModalBackdrop');
