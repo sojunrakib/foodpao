@@ -257,8 +257,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   };
 
-  if (openAuthModalBtn) openAuthModalBtn.addEventListener('click', openAuthModal);
-  if (drawerAuthBtn) drawerAuthBtn.addEventListener('click', openAuthModal);
+  // Login / Sign Up buttons are kept static per requirement: no modal or login functionality on click
+  if (openAuthModalBtn) {
+    openAuthModalBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Kept static: no login functionality triggered
+    });
+  }
+  if (drawerAuthBtn) {
+    drawerAuthBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Kept static: no login functionality triggered
+    });
+  }
   if (closeAuthModalBtn) closeAuthModalBtn.addEventListener('click', closeAuthModal);
 
   if (authModalBackdrop) {
