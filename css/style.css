@@ -562,8 +562,7 @@ ul {
   grid-template-columns: minmax(0, 590px) 1fr;
   align-items: start;
   gap: 40px;
-  position: relative;
-  z-index: 2;
+  position: static;
   width: 100%;
 }
 
@@ -572,11 +571,6 @@ ul {
   justify-content: flex-end;
   align-items: flex-start;
   width: 100%;
-  padding-top: 0;
-  margin-top: -38px;
-  transform: translateX(36px);
-  position: relative;
-  z-index: 10;
 }
 
 /* Defensive: Hide old standalone visual elements in case of stale markup */
@@ -644,12 +638,13 @@ ul {
    Matches Exact Mockup: 4 Dark Cards + Coral Labels + Colons Only
    ============================================== */
 .hero-countdown-container {
+  position: absolute;
+  top: 24px;
+  right: 36px;
+  z-index: 25;
   display: flex;
   justify-content: flex-end;
   width: auto;
-  position: relative;
-  z-index: 10;
-  margin-top: 4px;
 }
 
 .countdown-minimal-widget {
@@ -2592,6 +2587,7 @@ ul {
 /* Tablet (768px - 1024px) */
 @media (max-width: 1024px) {
   .hero-container {
+    position: relative;
     grid-template-columns: 1fr;
     gap: 36px;
     align-items: center;
@@ -2613,6 +2609,9 @@ ul {
   }
   
   .hero-countdown-container {
+    position: relative;
+    top: auto;
+    right: auto;
     justify-content: center;
     width: 100%;
     margin-top: 14px;
@@ -2736,6 +2735,7 @@ ul {
   }
 
   .hero-container {
+    position: relative;
     grid-template-columns: 1fr;
     gap: 32px;
     align-items: center;
@@ -2776,6 +2776,9 @@ ul {
   }
 
   .hero-countdown-container {
+    position: relative;
+    top: auto;
+    right: auto;
     justify-content: center;
     width: 100%;
     margin-top: 8px;
