@@ -71,41 +71,49 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 3. Dynamic Coming Soon Countdown Timer (Stops 31 Dec 2026) ---
   const heroCountdownContainer = document.getElementById('heroCountdownContainer');
   if (heroCountdownContainer) {
-    // Inject the Minimal 4-Box Countdown Component dynamically into Hero Section via JS
+    // Inject the Minimal 4-Box Countdown Component with Option 3 COMING SOON headline
     heroCountdownContainer.innerHTML = `
       <div class="countdown-minimal-widget">
-        <div class="countdown-unit-box">
-          <div class="unit-number-frame">
-            <span class="unit-number" id="cdDays">00</span>
-          </div>
-          <span class="unit-text">DAYS</span>
+        <div class="countdown-tagline-wrap">
+          <span class="countdown-dot-accent"></span>
+          <span class="countdown-tagline-text">COMING SOON</span>
+          <span class="countdown-dot-accent"></span>
         </div>
 
-        <div class="countdown-colon">:</div>
-
-        <div class="countdown-unit-box">
-          <div class="unit-number-frame">
-            <span class="unit-number" id="cdHours">00</span>
+        <div class="countdown-boxes-row">
+          <div class="countdown-unit-box">
+            <div class="unit-number-frame">
+              <span class="unit-number" id="cdDays">00</span>
+            </div>
+            <span class="unit-text">DAYS</span>
           </div>
-          <span class="unit-text">HOURS</span>
-        </div>
 
-        <div class="countdown-colon">:</div>
+          <div class="countdown-colon">:</div>
 
-        <div class="countdown-unit-box">
-          <div class="unit-number-frame">
-            <span class="unit-number" id="cdMins">00</span>
+          <div class="countdown-unit-box">
+            <div class="unit-number-frame">
+              <span class="unit-number" id="cdHours">00</span>
+            </div>
+            <span class="unit-text">HOURS</span>
           </div>
-          <span class="unit-text">MINS</span>
-        </div>
 
-        <div class="countdown-colon">:</div>
+          <div class="countdown-colon">:</div>
 
-        <div class="countdown-unit-box">
-          <div class="unit-number-frame">
-            <span class="unit-number" id="cdSecs">00</span>
+          <div class="countdown-unit-box">
+            <div class="unit-number-frame">
+              <span class="unit-number" id="cdMins">00</span>
+            </div>
+            <span class="unit-text">MINS</span>
           </div>
-          <span class="unit-text">SECS</span>
+
+          <div class="countdown-colon">:</div>
+
+          <div class="countdown-unit-box">
+            <div class="unit-number-frame">
+              <span class="unit-number" id="cdSecs">00</span>
+            </div>
+            <span class="unit-text">SECS</span>
+          </div>
         </div>
       </div>
     `;
