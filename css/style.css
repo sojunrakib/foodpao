@@ -2269,6 +2269,26 @@ ul {
   transform: translateX(4px);
 }
 
+.social-btn.btn-facebook:hover {
+  background: rgba(24, 119, 242, 0.16);
+  border-color: rgba(24, 119, 242, 0.45);
+  color: #FFFFFF;
+}
+
+.social-btn.btn-facebook:hover svg {
+  color: #1877F2;
+}
+
+.social-btn.btn-whatsapp:hover {
+  background: rgba(37, 211, 102, 0.16);
+  border-color: rgba(37, 211, 102, 0.45);
+  color: #FFFFFF;
+}
+
+.social-btn.btn-whatsapp:hover svg {
+  color: #25D366;
+}
+
 .footer-subtext {
   font-size: 0.88rem;
   margin-bottom: 16px;
