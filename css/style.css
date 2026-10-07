@@ -590,6 +590,27 @@ ul {
   flex-direction: column;
 }
 
+/* Hero Brand Banner Logo */
+.hero-brand-banner-wrap {
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.hero-brand-banner-img {
+  max-width: 260px;
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 4px 18px rgba(255, 43, 84, 0.28));
+  transition: transform var(--transition-normal);
+}
+
+.hero-brand-banner-img:hover {
+  transform: scale(1.03);
+}
+
 .handwritten-badge {
   display: inline-flex;
   align-items: flex-start;
@@ -2669,6 +2690,15 @@ ul {
   .hero-content {
     align-items: center;
   }
+
+  .hero-brand-banner-wrap {
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .hero-brand-banner-img {
+    max-width: 230px;
+  }
   
   .hero-title {
     font-size: 2.8rem;
@@ -2848,6 +2878,15 @@ ul {
     align-items: center;
     width: 100%;
     max-width: 100%;
+  }
+
+  .hero-brand-banner-wrap {
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .hero-brand-banner-img {
+    max-width: 195px;
   }
 
   .handwritten-badge {
@@ -3199,6 +3238,10 @@ ul {
 
 /* Extra Small Mobile (< 400px) */
 @media (max-width: 400px) {
+  .hero-brand-banner-img {
+    max-width: 175px;
+  }
+
   .hero-features-row {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 6px 6px !important;
