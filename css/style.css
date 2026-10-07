@@ -1357,7 +1357,8 @@ ul {
    7. SECTION 4: GROW YOUR BUSINESS WITH FOODPAO (PARTNER SECTION)
    -------------------------------------------------------------------------- */
 .partner-section {
-  background-color: #FAF9F8;
+  background-color: #0C0D12;
+  background-image: radial-gradient(circle at 50% 30%, #151620 0%, #0C0D12 100%);
   padding: 80px 0;
   position: relative;
   overflow: hidden;
